@@ -37,7 +37,17 @@ module Guard
 
     def run_rake_task
       UI.info "running #{@task}"
-      ::Rake::Task[@task].execute
+      task = ::Rake::Task[@task]
+      reenable_task_and_prerequisites task
+      task.invoke
     end
+    
+  private
+    
+    def reenable_task_and_prerequisites(task)
+      task.reenable
+      task.prerequisites.each { |pre| reenable_task_and_prerequisites(::Rake::Task[pre]) }
+    end
+    
   end
 end
