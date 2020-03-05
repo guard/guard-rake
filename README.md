@@ -35,12 +35,12 @@ Please read the [Guard usage documentation](https://github.com/guard/guard#readm
 Guard::Rake comes with a default template that looks like this:
 
 ```ruby
-guard 'rake', :task => 'doit' do
-  watch(%r{^some_files/.+$})
+guard 'rake', :task => 'build' do
+  watch(%r{^my_file.rb})
 end
 ```
 
-This will run the rake task `doit` from your `Rakefile` whenever any of
+This will run the rake task `build` from your `Rakefile` whenever any of
 the watched files change.
 
 ## Development
